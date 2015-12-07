@@ -1,8 +1,8 @@
-app.controller('PlaylistCtrl', function ($scope){
+app.controller('PlaylistCtrl', function ($scope, PlaylistFactory){
 	$scope.createPlaylist = function () {
-		//console.log(newPlaylist);
-		console.log("Scope:");
-		console.log($scope.newPlaylist);
+		PlaylistFactory.create($scope.newPlaylist.name)
+		$scope.newPlaylist.name = "";
+		$scope.createPlaylistForm.$setPristine();
 	}
 
 });
