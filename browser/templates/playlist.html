@@ -22,10 +22,11 @@
             </tr>
         </tbody>
     </table>
-    <small ng-hide="playlist.songs.length">No songs.</small>
+    <small ng-hide="playlist.songs.length">No songs in Playlist</small>
+    <br>
     <small>{{songs.length}} Songs in DB </small>
     <form class="form-horizontal" ng-submit="addSong(songToAdd)">
-        <legend>New Song</legend>
+        <legend>Add Song</legend>
         <label class="col-xs-2 control-label">Song:</label>
         <div class="col-xs-6">
             <select ng-model="songToAdd" class="form-control" ng-options="song as song.name for song in songs"></select>

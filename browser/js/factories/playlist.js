@@ -2,21 +2,23 @@ app.factory('PlaylistFactory', function ($http) {
 	var cachedPlaylists = [];
     var PlaylistFactory = {};
 
-    PlaylistFactory.create = function (data) {
-        return $http.post('/api/playlists', {name: data})
+    PlaylistFactory.findAll = function () {
+        return $http.get('/api/playlists')
         .then(function (response) {
             angular.copy(response.data, cachedPlaylists);
             return cachedPlaylists;
         });
     };
 
-    PlaylistFactory.findAll = function () {
-    	return $http.get('/api/playlists')
-    	.then (function (response){
-    		var playlist = response.data
+    PlaylistFactory.create = function (data) {
+        return $http.post('/api/playlists', {name: data})
+        .then(function (response) {
+            return response.data;
+        })
+        .then(function (playlist) {
             cachedPlaylists.push(playlist);
-            return playlist;
-    	});
+             return playlist;
+        });
     };
 
     PlaylistFactory.fetchById = function(id) {
