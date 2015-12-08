@@ -1,11 +1,12 @@
 app.config(function ($stateProvider) {
 	$stateProvider.state('playlist', {
-		url: '/playlists',
+		url: '/playlists/:playlistId',
 		templateUrl: '/templates/playlist.html',
 		controller: 'PlaylistCtrl',
 		resolve: {
-			confirmAdd: function () {
-				console.log("added playlist");
+			//console.log('in state for PL:', $stateParams);
+			thePlaylist: function (PlaylistFactory, $stateParams) {
+				return PlaylistFactory.fetchById($stateParams.playlistId);
 			}
 		}
 	});
