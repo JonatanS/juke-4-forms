@@ -23,5 +23,15 @@
         </tbody>
     </table>
     <small ng-hide="playlist.songs.length">No songs.</small>
-    <hr>
+
+                <legend>New Song</legend>
+                    <label class="col-xs-2 control-label">Name</label>
+                    <div class="col-xs-4">
+                        <select  class="form-control" ng-options='song as song.name for song in songs'>
+                    </div>
+                    <button type="submit" class="btn btn-success" ng-click="addSong()">Add Song</button>
+                    <div class="col-xs-4">
+                        
+                    </div>
+
 </div>

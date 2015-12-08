@@ -1,4 +1,4 @@
-app.factory('SongFactory', function () {
+app.factory('SongFactory', function ($http) {
 	var SongFactory = {};
 	SongFactory.convert = function (raw, artistObjs) {
 		if (typeof artistObjs == 'object') {
@@ -9,6 +9,14 @@ app.factory('SongFactory', function () {
 		}
 		raw.audioUrl = '/api/songs/' + raw._id + '.audio';
 		return raw;
+	};
+	SongFactory.fetchAll = function(){
+		return $http.get('/api/songs')
+		.then(function(response){
+			var songs = response.data;
+			console.log(songs);
+			return songs;
+		});
 	};
 	return SongFactory;
 });

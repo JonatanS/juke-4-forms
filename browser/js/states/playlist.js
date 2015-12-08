@@ -8,6 +8,7 @@ app.config(function ($stateProvider) {
 			thePlaylist: function (PlaylistFactory, $stateParams) {
 				return PlaylistFactory.fetchById($stateParams.playlistId);
 			}
+			
 		}
 	});
 });
