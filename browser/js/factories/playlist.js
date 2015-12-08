@@ -3,7 +3,6 @@ app.factory('PlaylistFactory', function ($http) {
     var PlaylistFactory = {};
 
     PlaylistFactory.create = function (data) {
-    	console.log("playlist factory create: ", data);
         return $http.post('/api/playlists', {name: data})
         .then(function (response) {
             angular.copy(response.data, cachedPlaylists);
@@ -12,7 +11,6 @@ app.factory('PlaylistFactory', function ($http) {
     };
 
     PlaylistFactory.findAll = function () {
-    	console.log('fetching');
     	return $http.get('/api/playlists')
     	.then (function (response){
     		var playlist = response.data
@@ -22,16 +20,18 @@ app.factory('PlaylistFactory', function ($http) {
     };
 
     PlaylistFactory.fetchById = function(id) {
-        console.log('fetching: ',id);
         return $http.get('/api/playlists/' + id)
         .then(function (response) {
             return response.data;
         });
     };
 
-    // PlaylistFactory.addASong = function(song){
-    //     return $http.post('/api/playlists/')
-    // }
+    PlaylistFactory.addSong = function(plId, song){
+        $http.post('/api/playlists/' + plId + '/songs', {song: song})
+        .then (function (response) {
+            console.log("added to playlist: " + response.data.name);
+        })
+    }
 
     return PlaylistFactory;
 

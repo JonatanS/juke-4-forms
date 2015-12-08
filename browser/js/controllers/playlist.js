@@ -5,9 +5,13 @@ app.controller('PlaylistCtrl', function ($scope, PlaylistFactory, thePlaylist, S
 	// }
 	SongFactory.fetchAll()
 	.then(function(response){
-		console.log('inside the playlist ctrl ')
 		$scope.songs = response;
-		console.log($scope.songs, 'scope.songs')
 	})
+
+	$scope.addSong = function (song) {
+		console.log('adding: '+ song.name);
+		PlaylistFactory.addSong($scope.playlist._id, song);
+		//then refresh list of songs
+	}
 	
 });
